@@ -10,13 +10,16 @@ class FullPost extends Component {
       loadedPost: null,
     };
   }
-  async componentDidUpdate() {
-    if (this.props.id) {
+  async componentDidMount() {
+    console.log('FullPost props=======', this.props.match.params.id);
+    if (this.props.match.params.id > 0) {
       if (
         !this.state.loadedPost ||
         (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)
       ) {
-        const { data } = await axios.get('/posts/' + this.props.id);
+        const { data } = await axios.get(
+          '/posts/' + this.props.match.params.id
+        );
         this.setState({ loadedPost: data });
         console.log('post+++++++++++++++++', data);
       }
@@ -35,7 +38,7 @@ class FullPost extends Component {
       post = <p style={{ textAlign: 'center' }}>Loading.......</p>;
     }
 
-    if (this.props.id && this.state.loadedPost) {
+    if (this.props.match.params.id && this.state.loadedPost) {
       post = (
         <div className="FullPost">
           <h1>{this.state.loadedPost.title}</h1>
