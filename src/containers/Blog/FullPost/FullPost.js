@@ -12,12 +12,12 @@ class FullPost extends Component {
   }
   componentDidMount() {
     console.log('FullPost props=======', this.props.match.params.id);
-    this.fetchData(this.props.match.params.id);
+    this.fetchData();
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.match.params.id !== prevProps.id) {
-      this.fetchData(this.props.match.params.id);
+      this.fetchData();
     }
   }
 
