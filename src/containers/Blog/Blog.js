@@ -9,6 +9,7 @@ import './Blog.css';
 class Blog extends Component {
   constructor(props) {
     super(props);
+    this.state = { auth: false };
   }
 
   render() {
@@ -35,7 +36,13 @@ class Blog extends Component {
         </header>
         <Switch>
           {/* <Route path="/" exact render={() => <Posts />} /> */}
-          <Route path="/new-post" component={NewPost} />
+          {this.state.auth ? (
+            <Route path="/new-post" component={NewPost} />
+          ) : (
+            <div style={{ color: 'red', textAlign: 'center' }}>
+              Not Authorized
+            </div>
+          )}
           <Route path="/posts" component={Posts} />
           <Redirect from="/" to="/posts" />
           {/* <Route path="/" component={Posts} /> */}
