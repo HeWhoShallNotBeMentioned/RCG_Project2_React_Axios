@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
+import NoMatch from './NoMatch/NoMatch';
 
 import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 
@@ -38,14 +39,13 @@ class Blog extends Component {
           {/* <Route path="/" exact render={() => <Posts />} /> */}
           {this.state.auth ? (
             <Route path="/new-post" component={NewPost} />
-          ) : (
-            <div style={{ color: 'red', textAlign: 'center' }}>
-              Not Authorized
-            </div>
-          )}
+          ) : null}
           <Route path="/posts" component={Posts} />
-          <Redirect from="/" to="/posts" />
+          {/* <Redirect from="/" exact to="/posts" /> */}
           {/* <Route path="/" component={Posts} /> */}
+          {/* 404 route does not work with redirect on the home page well. 
+          Best to have only one. */}
+          <Route component={NoMatch} />
         </Switch>
       </div>
     );
