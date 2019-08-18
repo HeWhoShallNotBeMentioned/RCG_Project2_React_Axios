@@ -11,7 +11,7 @@ class NewPost extends Component {
       title: '',
       content: '',
       author: 'Monty',
-      submitted: false,
+      //submitted: false,
     };
   }
   componentDidMount() {
@@ -26,17 +26,18 @@ class NewPost extends Component {
     };
     const postResponse = await axios.post('/posts', post);
     console.log('postResponse xxxxxxxxx ', postResponse);
-    this.setState({ submitted: true });
+    //this.setState({ submitted: true });
+    this.props.history.push('/posts');
   };
 
   render() {
-    let redirect = null;
-    if (this.state.submitted) {
-      redirect = <Redirect to="/posts" />;
-    }
+    // let redirect = null;
+    // if (this.state.submitted) {
+    //   redirect = <Redirect to="/posts" />;
+    // }
     return (
       <div className="NewPost">
-        {redirect}
+        {/* {redirect} */}
         <h1>Add a Post</h1>
         <label>Title</label>
         <input
