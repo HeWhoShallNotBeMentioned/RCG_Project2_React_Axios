@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import Posts from './Posts/Posts';
-import NewPost from './NewPost/NewPost';
+//import NewPost from './NewPost/NewPost';
 import NoMatch from './NoMatch/NoMatch';
-
+import asyncComponent from '../../hoc/asyncComponent';
 import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 
 import './Blog.css';
 
+const AsyncNewPost = asyncComponent(() => {
+  return import('./NewPost/NewPost');
+});
+
 class Blog extends Component {
   constructor(props) {
     super(props);
-    this.state = { auth: false };
+    this.state = { auth: true };
   }
 
   render() {
@@ -38,7 +42,7 @@ class Blog extends Component {
         <Switch>
           {/* <Route path="/" exact render={() => <Posts />} /> */}
           {this.state.auth ? (
-            <Route path="/new-post" component={NewPost} />
+            <Route path="/new-post" component={AsyncNewPost} />
           ) : null}
           <Route path="/posts" component={Posts} />
           {/* <Redirect from="/" exact to="/posts" /> */}
