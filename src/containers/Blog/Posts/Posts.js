@@ -29,7 +29,11 @@ class Posts extends Component {
   }
 
   postSelectedHandler = id => {
-    this.setState({ selectedPostId: id });
+    // If we did not have Link we could use this instead.
+    // 2 different ways of doing this below
+    //this.props.history.push({ pathname: '/' + id });
+    //this.props.history.push( '/' + id );
+    console.log('postSelectedHandler');
   };
 
   render() {
